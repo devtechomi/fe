@@ -1,0 +1,260 @@
+{
+    "menu": {
+        "dark-theme": "Koyu Tema"
+    },
+
+    "actions": {
+        "no": "Hayır",
+        "yes": "Evet",
+        "ok": "Tamam",
+        "close": "Kapat",
+        "search": "Ara",
+        "manage": "Yönet",
+        "update": "Değiştir",
+        "send": "Gönder",
+        "sync": "Senkronize Et",
+        "generate-passwords": "Yeni Şifre Üret"
+    },
+
+    "sidenav": {
+        "dashboard": {
+            "header-name": "Panel",
+            "overview": "Genel Bakış",
+            "integrations": "Entegrasyonlar"
+        },
+        "account": {
+            "header-name": "Hesap",
+            "profile": "Profil",
+            "sessions": "Oturumlar",
+            "security": "Güvenlik",
+            "permissions": "Yetki İşlemleri"
+        },
+        "business": {
+            "header-name": "Şirket",
+            "warehouses": "Depolar"
+        },
+        "permissions": {
+            "header-name": "Yetki İşlemleri",
+            "roles": "Roller",
+            "users": "Kullanıcılar",
+            "permissions": "Yetkiler"
+        },
+        "warehouse-operations": {
+            "header-name": "Depo İşlemleri",
+            "boxes": "Kutular",
+            "transfer": "transfer"
+        },
+        "reports": {
+            "header-name": "Raporlar",
+            "inventory": "Envanter",
+            "transfers": "Transferler"
+        }
+    },
+
+    "auth": {
+        "username": "Kullanıcı Adı",
+        "password": "Şifre",
+        "username-required": "Kullanıcı adı alanı zorunlu.",
+        "password-required": "Şifre alanı zorunlu.",
+        "password-length": "Şifre en az 6 haneli olmalı.",
+        "wrong-credentials": "Kullanıcı adı ve ya şifre yanlış.",
+        "user-not-found": "Entegrasyon, kullanıcı diğer sistemde bulunamadığı için tamamlanamadı. Lütfen giriş bilgilerinizi kontrol ediniz.",
+        "integration-timeout": "Verileriniz LogD Cosmos'a entegre edilirken bir sorun oluştu. Lütfen daha sonra tekrar deneyiniz.",
+        "integration-in-progress": "Entegrasyon işlemleri yapılıyor...",
+        "integration-already-completed": "Entagrasyon işlemi zaten tamamlanmıştır.",
+        "session-timeout": "Oturum süreniz doldu. Lütfen tekrar giriş yapınız.",
+        "access-deined": "Kaynağa erişim izniniz yok. Lütfen izinlerinizi yenilemek için tekrar giriş yapınız.",
+        "need-login": "Kaynağa erişmek için lütfen giriş yapınız.",
+        "login": "Giriş",
+        "logout": "Çıkış",
+        "logout-success": "Başarıyla çıkış yaptınız."
+    },
+
+    "integrations": {
+        "history": {
+            "initial": {
+                "header": "İlk Entegrasyon",
+                "summary": "Depolar için kullanıcılar oluşturuldu",
+                "content-1": "Bu entegrasyonda, her bir deponuz için kullanıcılar oluşturuldu ve varsayılan şifreler atandı. Bu, Milkrun LogD'den LogD Cosmos'a yapılan ilk başlangıç entegrasyonuydu.",
+                "content-2": "Hatırlatma: Şirket → Depolar menüsünden depo kullanıcılarınız için şifreler üretebilir veya belirli bir kullanıcının şifresini isteğiniz bir şifreyle güncelleyebilirsiniz."
+            }
+        },
+
+        "initial": {
+            "header-1": "Kullanıcılar Oluşturuldu!",
+            "content-1": "Milkrun LogD'den LogD Cosmos'a ilk entegrasyonunuz gerçekleşti. Bu süreçte, depolarınızla ilgili bilgileri topladık ve her depo için yeni bir kullanıcı oluşturduk.",
+            "header-2": "Sonraki Adım",
+            "content-2": "Lütfen oluşturulan kullanıcı adlarını ve şifrelerini kaydetmek için Excel dosyasını şimdi indirin. Bu pencereyi kapattıktan sonra, şifreleri tekrar görüntülemeniz mümkün olmayacaktır çünkü şifreler sistemimizde tek yönlü ve güvenli bir şekilde saklanmaktadır.",
+            "header-3": "Şifre Kurtarma",
+            "content-3": "Şifrelerin kaybolma veya unutulma durumunda, iş hesabı sahibi olarak depo kullanıcılarınız için yeni şifreler oluşturup bu şifreleri Excel dosyası olarak indirebilirsiniz. Bu işlem belirli kullanıcılar veya tüm kullanıcılar için yapılabilir. Lütfen bu işlemin mevcut şifreleri geçersiz kılacağını unutmayın. Bu yüzden, sadece gerekli olan kullanıcılar için şifre oluşturmanızı öneririz.",
+            "content-4": "Yeni şifreleri Şirket -> Depolar menüsünden oluşturabilirsiniz.",
+            "file-name": "kullanıcılar",
+            "download-fail": "Bir sorun oluştu. Lütfen şifre kurtma kısmındaki adımları izleyerek yeni şifreler oluşturunuz."
+        },
+
+        "sync": {
+            "up-to-date": "Depo bilgileri zaten güncel.",
+            "header-1": "Senkronizasyon Tamamlandı!",
+            "content-1": "Milkrun LogD'den yeni depolar LogD Cosmos'a eklendi. Lütfen yeni depolar için oluşturulan kullanıcı adları ve şifreleri kaydetmek için Excel dosyasını şimdi indiriniz.",
+            "file-name": "yeni-kullanıcılar",
+            "download-fail": "Bir sorun oluştu. Yeni şifreleri almak için, lütfen yeni eklenen depoları seçip ardından şifre oluştur butonuna tıklayınız."
+        }
+    },
+
+    "dashboard": {
+        "overview": {
+            "account-type-content": "{{name}} olarak giriş yaptınız - {{type}}",
+            "affiliated-business": "Bağlı Olduğu Şirket: {{name}}",
+            "business-account": "Şirket Hesabı",
+            "warehouse-account": "Depo Hesabı"
+        }
+    },
+
+    "business": {
+        "warehouses": {
+            "generate-passwords": {
+                "header-1": "Şifreler Üretildi!",
+                "content-1": "Lütfen depolar için üretilen yeni şifreleri kaydetmek için Excel dosyasını şimdi indiriniz.",
+                "file-name": "yeni-şifreler",
+                "download-fail": "Bir sorun oluştu. Lütfen yeniden şifre üretip tekrar deneyiniz."
+            },
+
+            "update-password": {
+                "header": "Şifre Değiştir",
+                "confirm-header": "Şifre Değiştirme Onayı",
+                "confirm-message": "Bu kullanıcının şifresini değiştirmek istediğinizden emin misiniz?",
+                "success": "Depoya bağlı olan kullanıcının şifresi güncellendi."
+            },
+
+            "send-password": {
+                "confirm-header": "Şifre Gönderimi",
+                "confirm-message": "Şifreyi göndermek istediğinizden emin misiniz?",
+                "success": "Şifre başarıyla gönderildi",
+                "no-email": "Kullanıcının email adresi bulunamadı."
+            }
+        }
+    },
+
+    "warehouse-operations": {
+        "boxes": {
+            "up-to-date": "Kutu bilgileri zaten güncel.",
+            "success": "Kutu bilgileri senkronize edildi."
+        },
+
+        "transfer": {
+            "no-boxes": "Herhangi bir gönderilecek kutu tipi yok.",
+            "send-boxes-dialog": {
+                "header": "Kutu Gönder",
+                "content-1": "Eğer aradığınız kutu tipi listede bulamıyorsanız, kutu bilgilerini senkronize etmek için lütfen aşağıdaki senkronize et butonuna tıklayınız.",
+                "box": "Kutu",
+                "quantity": "Adet",
+                "box-required": "Kutu alanı zorunlu.",
+                "quantity-required": "Adet alanı zorunlu.",
+                "quantity-wrong": "Adet 1'den küçük olamaz.",
+                "quantity-integer": "Adet sadece tam sayı olabilir.",
+                "delivery-note": "İrsaliye",
+                "delivery-note-required": "İrsaliye alanı zorunlu.",
+                "success": "Kutular başarılı bir şekilde gönderildi.",
+                "box-status-full": "Dolu",
+                "box-status-empty": "Boş",
+                "box-status-required": "Zorunlu Alan",
+                "box-status": "Kutu Durumu"
+            },
+            "type-selection": "Transfer Tipi",
+            "types": {
+                "return-to-warehouse": "Depoya İade",
+                "store-transfer": "Mağazaya Transfer"
+            },
+            "no-permission": "Bu işlem için yetkiniz bulunmamaktadır.",
+            "warehouse-selection": "Hedef Depo"
+        }
+    },
+    
+    "errors": {
+        "page-not-found": "Sayfa Bulanamadı",
+        "not-found-content": "Aradığınız sayfa malesef bulanamadı. Lütfen ana sayfaya geri dönün.",
+        "not-found-sidenav-content": "Aradığınız sayfa malesef bulanamadı. Lütfen panele geri dönün.",
+        "go-homepage": "Ana Sayfaya Git",
+        "go-dashboard": "Panele Git",
+        "global-error": "Beklenmeyen bir hata oluştu.",
+        "wrong-data": "Uygun olmayan veri gönderildi.",
+        "page-under-development": "Bu sayfa yapım aşamasındadır.",
+        "permission-error": "Yetki bilgileri alınamadı"
+    },
+
+    "table": {
+        "pagination": {
+            "items-per-page": "Sayfa başına öğe:",
+            "next-page": "Sonraki sayfa",
+            "previous-page": "Önceki sayfa",
+            "first-page": "İlk sayfa",
+            "last-page": "Son sayfa"
+        },
+
+        "manage": {
+            "change-password": "Şifre Değiştir",
+            "send-password": "Şifreyi Gönder"
+        },
+
+        "warehouse": {
+            "name": "Ad",
+            "username": "Kullanıcı Adı",
+            "type": "Tip",
+            "erpCode": "ERP Kodu",
+            "address-street": "Adres Sokak",
+            "address-district": "Adres İlçe",
+            "address-zipCode": "Adres Posta Kodu",
+            "address-city": "Adres Şehir",
+            "address-country": "Adres Ülke",
+            "contact-name": "Kontak Adı",
+            "contact-email": "Kontak Email",
+            "contact-phone": "Kontak Telefon",
+            "Undefined": "Tanımsız",
+            "MainWarehouse": "Ana Depo",
+            "Warehouse": "Depo",
+            "Store": "Mağaza",
+            "RoadDepot": "Yol Depo",
+            "SuperUser": "Süper User",
+            "returnToWarehouse": "Depoya İade",
+            "returnToMainWarehouse": "Mağazaya İade",
+            "save": "Kaydet",
+            "save-all": "Hepsini Kaydet",
+            "save-business": "Hepsini Kaydet"
+        },
+
+        "boxes": {
+            "code": "Kod",
+            "name": "İsim",
+            "description": "Açıklama",
+            "type": "Tip",
+            "volume": "Hacim",
+            "empty-volume": "Boş Hacim",
+            "Undefined": "Tanımsız",
+            "Normal": "Normal",
+            "Cardboard": "Karton"
+        }
+    },
+
+    "excel": {
+        "download-excel": "Excel'i İndir",
+        "download-started": "Excel dosyası hazırlanıyor.",
+        "download-success": "Excel dosyası oluşturuldu.",
+        "warehouse": {
+            "column-names": {
+                "name": "Ad",
+                "erpCode": "ERP Kodu",
+                "username": "Kullanıcı Adı",
+                "password": "Şifre",
+                "type": "Tip",
+                "address-street": "Adres Sokak",
+                "address-district": "Adres İlçe",
+                "address-zipCode": "Adres Posta Kodu",
+                "address-city": "Adres Şehir",
+                "address-country": "Adres Ülke",
+                "contactInfo-name": "Kontak Adı",
+                "contactInfo-email": "Kontak Email",
+                "contactInfo-phone": "Kontak Telefon"
+            }
+        }
+    }
+}

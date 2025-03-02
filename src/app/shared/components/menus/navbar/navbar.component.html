@@ -1,0 +1,16 @@
+<mat-toolbar class="fixed-navbar">
+    <img class="navbar-logo" alt="LogD logo">
+    <span class="spacer"></span>
+    <mat-slide-toggle #themeToggler
+                      labelPosition="before"
+                      (change)="onSwitchedTheme($event)">
+        {{ "menu.dark-theme" | translate }}
+    </mat-slide-toggle>
+    <mat-select class="language-selector"
+                #languageSelector
+                (selectionChange)="onSwitchedLanguage($event)">
+        <mat-option *ngFor="let option of languageOptions" [value]="option.code">
+            {{ option.displayName }}
+        </mat-option>
+    </mat-select>
+</mat-toolbar>

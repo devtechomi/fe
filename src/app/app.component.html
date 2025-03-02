@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+
+<ng-container *ngIf="isAuthenticated && isSidenavPresent; else notLoggedIn">
+    @defer {
+        <app-sidenav></app-sidenav>
+    }
+</ng-container>
+
+<ng-template #notLoggedIn>
+    <router-outlet></router-outlet>
+</ng-template>

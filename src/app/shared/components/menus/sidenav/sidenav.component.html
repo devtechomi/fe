@@ -1,0 +1,55 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side" [opened]="drawerOpened">
+        <mat-accordion class="menu" multi>
+            <ng-container *ngFor="let element of sidenavElements; let isLast = last">
+                <mat-expansion-panel *ngIf="canSeeMenu(element.roles)">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>{{ element.icon }}</mat-icon>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{ element.name | translate }}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <div class="submenus">
+                        <ng-container *ngFor="let page of element.pages">
+                            <button *ngIf="canSeeMenu(page.roles)"
+                                    mat-button
+                                    class="submenu-btn"
+                                    [routerLink]="[page.route]"
+                                    routerLinkActive="active-menu"
+                                    (click)="onNavigate()">
+                                -&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ page.name | translate }}
+                            </button>
+                        </ng-container>
+                    </div>
+                </mat-expansion-panel>
+                <mat-divider *ngIf="!isLast && canSeeMenu(element.roles)"></mat-divider>
+            </ng-container>
+        </mat-accordion>
+        
+        <div class="logout">
+            <mat-divider></mat-divider>
+            <div class="logout-btn-container">
+                <button class="logout-btn" mat-fab extended (click)="onLogOut()" [disabled]="isLoggingOut">
+                    <mat-icon>logout</mat-icon>
+                    {{ 'auth.logout' | translate }}
+                </button>
+                <mat-spinner class="spinner" *ngIf="isLoggingOut" [diameter]="36"></mat-spinner>
+            </div>
+        </div>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <button class="sidenav-btn" mat-mini-fab (click)="drawer.toggle()">
+            <mat-icon *ngIf="drawer.opened">chevron_left</mat-icon>
+            <mat-icon *ngIf="!drawer.opened">chevron_right</mat-icon>
+        </button>
+
+        <div class="sidenav-content-background">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</mat-drawer-container>

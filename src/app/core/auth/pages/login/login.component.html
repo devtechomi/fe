@@ -1,0 +1,40 @@
+<mat-card appearance="outlined" class="main-card transparent">
+    <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogIn()">
+            <mat-form-field>
+                <mat-label>{{ "auth.username" | translate }}</mat-label>
+                <input matInput formControlName="username"
+                       required />
+                <mat-error *ngIf="form['username'].errors?.['required']">
+                    {{ "auth.username-required" | translate }}
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>{{ "auth.password" | translate }}</mat-label>
+                <input matInput formControlName="password"
+                       [type]="hidePassword ? 'password' : 'text'"
+                       required />
+                <button mat-icon-button matSuffix
+                        (click)="onPasswordToggle()"
+                        type="button">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="form['password'].errors?.['required']">
+                    {{ "auth.password-required" | translate }}
+                </mat-error>
+                <mat-error *ngIf="form['password'].errors?.['minlength']">
+                    {{ "auth.password-length" | translate }}
+                </mat-error>
+            </mat-form-field>
+            <div class="login-btn-container">
+                <button mat-flat-button
+                        type="submit"
+                        class="login-btn"
+                        [disabled]="isLoading">
+                    {{ "auth.login" | translate }}
+                </button>
+                <mat-spinner class="spinner" *ngIf="isLoggingIn" [diameter]="40"></mat-spinner>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

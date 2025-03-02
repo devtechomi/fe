@@ -1,0 +1,10 @@
+<app-loading>
+    <div class="overview-container">
+        <ng-container *ngIf="canShowTransferScreen">
+            <app-transfer></app-transfer>
+        </ng-container>
+        <ng-container *ngIf="!canShowTransferScreen">
+            <h1>Hoşgeldiniz {{ username }} </h1>
+        </ng-container>
+    </div>
+</app-loading>

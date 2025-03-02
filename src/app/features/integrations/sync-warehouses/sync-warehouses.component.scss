@@ -1,0 +1,19 @@
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.popup-content {
+
+    p:not(:first-child), h3, div {
+        margin-top: 1rem;
+    }
+}
+
+.header {
+    font-weight: bold;
+    align-self: center;
+}

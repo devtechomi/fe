@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.spinner {
+    margin-right: 1rem;
+}

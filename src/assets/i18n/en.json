@@ -1,0 +1,12 @@
+{
+  "warehouse-operations": {
+    "transfer": {
+      "send-boxes-dialog": {
+        "box-status": "Box Status",
+        "box-status-full": "Full",
+        "box-status-empty": "Empty",
+        "box-status-required": "Box status is required"
+      }
+    }
+  }
+} 

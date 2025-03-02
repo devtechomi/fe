@@ -1,0 +1,12 @@
+.loading {
+    position: -webkit-sticky;
+    position: absolute;
+    height: calc(100vh - 64px - 3rem);
+    width: calc(100% - 5.5rem);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    z-index: 900;
+    background-color: rgba(0, 0, 0, 0.2);
+}

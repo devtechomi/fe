@@ -1,0 +1,33 @@
+<mat-card appearance="outlined" class="main-card">
+    <mat-card-content>
+        <mat-grid-list cols="2" rowHeight="200px">
+            <mat-grid-tile colspan="1" rowspan="1">
+                <div class="multiline">
+                    <span class="not-found-header">404</span>
+                    <span class="not-found">{{ "errors.page-not-found" | translate }}</span>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="2">
+                <img src="assets/errors/not-found.png" alt="404 image" class="not-found-image">
+            </mat-grid-tile>
+            <mat-grid-tile colspan="1" rowspan="1">
+                <div class="multiline">
+                    <span *ngIf="!isSidenavPresent"
+                          class="not-found-content">
+                        {{ "errors.not-found-content" | translate }}
+                    </span>
+                    <span *ngIf="isSidenavPresent"
+                          class="not-found-content">
+                        {{ "errors.not-found-sidenav-content" | translate }}
+                    </span>
+                    <button mat-flat-button
+                            class="go-homepage-btn"
+                            (click)="return()">
+                            <span *ngIf="!isSidenavPresent">{{ "errors.go-homepage" | translate }}</span>
+                            <span *ngIf="isSidenavPresent">{{ "errors.go-dashboard" | translate }}</span>
+                    </button>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,18 @@
+<h1 mat-dialog-title class="header">{{ 'integrations.initial.header-1' | translate }}</h1>
+<mat-dialog-content class="mat-typography popup-content">
+    <p>{{ 'integrations.initial.content-1' | translate }}</p>
+
+    <h3>{{ 'integrations.initial.header-2' | translate }}</h3>
+    <p>{{ 'integrations.initial.content-2' | translate }}</p>
+
+    <div class="btn-container">
+        <button mat-flat-button class="download-btn" (click)="downloadExcel()">{{ 'excel.download-excel' | translate }}</button>
+    </div>
+
+    <h3>{{ 'integrations.initial.header-3' | translate }}</h3>
+    <p>{{ 'integrations.initial.content-3' | translate }}</p>
+    <p>{{ 'integrations.initial.content-4' | translate }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{ 'actions.close' | translate }}</button>
+</mat-dialog-actions>

@@ -1,0 +1,12 @@
+{
+  "warehouse-operations": {
+    "transfer": {
+      "send-boxes-dialog": {
+        "box-status": "Kutu Durumu",
+        "box-status-full": "Dolu",
+        "box-status-empty": "Boş",
+        "box-status-required": "Kutu durumu seçilmelidir"
+      }
+    }
+  }
+} 

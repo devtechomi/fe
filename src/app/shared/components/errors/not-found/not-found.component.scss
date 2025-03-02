@@ -1,0 +1,48 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 100%;
+    background: radial-gradient(circle at 0% 5%, #D0CF3D -50%, #639B5C, #136049);
+    //#0F3E67
+}
+
+.main-card {
+    box-shadow: var(--mat-sys-level5);
+    width: 100%;
+    max-width: 1000px;
+}
+
+.multiline {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found-header {
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.not-found {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.not-found-content {
+    text-align: center;
+}
+
+.go-homepage-btn {
+    margin-top: 2rem;
+}
+
+.not-found-image {
+    width: 100%;
+    height: auto;
+}

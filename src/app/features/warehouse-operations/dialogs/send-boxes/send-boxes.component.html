@@ -1,0 +1,109 @@
+<h1 mat-dialog-title class="header">{{ 'warehouse-operations.transfer.send-boxes-dialog.header' | translate }}</h1>
+<mat-dialog-content class="mat-typography popup-content">
+    <div class="content">
+        <!-- Loading spinner -->
+        <mat-spinner *ngIf="!permissionLoaded" [diameter]="5"></mat-spinner>
+
+        <!-- Permission yüklendikten sonra içeriği göster -->
+        <ng-container *ngIf="permissionLoaded">
+            <!-- Transfer Tipi Seçimi -->
+            <mat-form-field class="full-width">
+                <mat-label>{{ 'warehouse-operations.transfer.type-selection' | translate }}</mat-label>
+                <mat-select [(ngModel)]="selectedTransferType" 
+                           (selectionChange)="onTransferTypeChange($event.value)"
+                           required>
+                    <mat-option *ngIf="userPermissions?.returnToWarehouse" [value]="'ReturnToWarehouse'">
+                        {{ 'warehouse-operations.transfer.types.return-to-warehouse' | translate }}
+                    </mat-option>
+                    <mat-option *ngIf="userPermissions?.returnToMainWarehouse" [value]="'ReturnToMainWarehouse'">
+                        {{ 'warehouse-operations.transfer.types.store-transfer' | translate }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Transfer tipi seçildiğinde gösterilecek içerik -->
+            <ng-container *ngIf="selectedTransferType">
+                <!-- Depo seçimi -->
+                <mat-form-field class="full-width">
+                    <mat-label>{{ 'warehouse-operations.transfer.warehouse-selection' | translate }}</mat-label>
+                    <mat-select [(ngModel)]="selectedWarehouses" 
+                                (selectionChange)="onWarehouseSelectionChange()"
+                                multiple
+                                required
+                                [disabled]="selectedTransferType === 'ReturnToWarehouse'">
+                        <!-- Arama input'u -->
+                        <mat-select-trigger>
+                            {{ selectedWarehouses.length ? (selectedWarehouses.length === 1 ? selectedWarehouses[0].name : selectedWarehouses.length + ' depo seçildi') : '' }}
+                        </mat-select-trigger>
+                        <div class="select-search-field" *ngIf="selectedTransferType === 'ReturnToMainWarehouse'">
+                            <mat-form-field class="search-input">
+                                <input matInput
+                                       [formControl]="warehouseFilterCtrl"
+                                       placeholder="Mağaza Ara..."
+                                       #searchInput>
+                                <button mat-icon-button matSuffix (click)="warehouseFilterCtrl.setValue('')" *ngIf="searchInput.value">
+                                    <mat-icon>close</mat-icon>
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <mat-option *ngFor="let warehouse of filteredWarehouses | async" [value]="warehouse">
+                            {{ warehouse.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!-- Diğer form alanları -->
+                <ng-container *ngIf="sendBoxData.length > 0">
+                    <p>{{ 'warehouse-operations.transfer.send-boxes-dialog.content-1' | translate }}</p>
+                    <div class="btn-container">
+                        <button mat-flat-button class="download-btn" (click)="onSyncBoxesClicked()" [disabled]="isLoading">
+                            {{ 'actions.sync' | translate }}
+                        </button>
+                        <mat-spinner class="spinner" *ngIf="isSyncing" [diameter]="30"></mat-spinner>
+                    </div>
+
+                    <!-- Her bir depo için form alanları -->
+                    <div class="warehouse-row" *ngFor="let element of sendBoxData; let i = index">
+                        <p class="warehouse-name">{{ element.warehouse.name }}</p>
+
+                        <mat-form-field>
+                            <mat-label>{{ 'warehouse-operations.transfer.send-boxes-dialog.box' | translate }}</mat-label>
+                            <mat-select [(ngModel)]="element.boxCode" required name="boxCode-{{i}}" [disabled]="isLoading">
+                                <mat-option *ngFor="let box of transferComponent.boxes" [value]="box.code">{{ box.name }}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="!element.boxCode">{{ 'warehouse-operations.transfer.send-boxes-dialog.box-required' | translate }}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity' | translate }}</mat-label>
+                            <input matInput [(ngModel)]="element.quantity" required min="1" type="number" name="quantity-{{i}}" [disabled]="isLoading">
+                            <mat-error *ngIf="element.quantity === null || element.quantity === undefined">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-required' | translate }}</mat-error>
+                            <mat-error *ngIf="element.quantity !== null && element.quantity !== undefined && element.quantity < 1">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-wrong' | translate }}</mat-error>
+                            <mat-error *ngIf="element.quantity !== null && element.quantity !== undefined && element.quantity % 1 !== 0">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-integer' | translate }}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>{{ 'warehouse-operations.transfer.send-boxes-dialog.delivery-note' | translate }}</mat-label>
+                            <input matInput [(ngModel)]="element.deliveryNote" required name="delivery-note-{{i}}" [disabled]="isLoading">
+                            <mat-error *ngIf="!element.deliveryNote">{{ 'warehouse-operations.transfer.send-boxes-dialog.delivery-note-required' | translate }}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>{{ 'warehouse-operations.transfer.send-boxes-dialog.box-status' | translate }}</mat-label>
+                            <mat-select [(ngModel)]="element.boxStatus" required name="boxStatus-{{i}}" [disabled]="isLoading">
+                                <mat-option value="full">{{ 'warehouse-operations.transfer.send-boxes-dialog.box-status-full' | translate }}</mat-option>
+                                <mat-option value="empty">{{ 'warehouse-operations.transfer.send-boxes-dialog.box-status-empty' | translate }}</mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="!element.boxStatus">{{ 'warehouse-operations.transfer.send-boxes-dialog.box-status-required' | translate }}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCloseClicked()" [disabled]="isLoading">{{ 'actions.close' | translate }}</button>
+    <button mat-button cdkFocusInitial (click)="onSendClicked()" [disabled]="!canSend()">{{ 'actions.send' | translate }}</button>
+    <mat-spinner class="spinner" *ngIf="isSending" [diameter]="30"></mat-spinner>
+</mat-dialog-actions>

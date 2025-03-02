@@ -1,0 +1,247 @@
+{
+    "menu": {
+        "dark-theme": "Dark Theme"
+    },
+
+    "actions": {
+        "no": "No",
+        "yes": "Yes",
+        "ok": "OK",
+        "close": "Close",
+        "search": "Search",
+        "manage": "Manage",
+        "update": "Update",
+        "send": "Send",
+        "sync": "Synchronize",
+        "generate-passwords": "Generate Passwords"
+    },
+
+    "sidenav": {
+        "dashboard": {
+            "header-name": "Dashboard",
+            "overview": "Overview",
+            "integrations": "Integrations"
+        },
+        "account": {
+            "header-name": "Account",
+            "profile": "Profile",
+            "sessions": "Sessions",
+            "security": "Security",
+            "permissions": "Permissions"
+        },
+        "business": {
+            "header-name": "Business",
+            "warehouses": "Warehouses"
+        },
+        "permissions": {
+            "header-name": "Permission Operations",
+            "roles": "Roles",
+            "users": "Users",
+            "permissions": "Permissions"
+        },
+        "warehouse-operations": {
+            "header-name": "Warehouse Operations",
+            "boxes": "Boxes",
+            "transfer": "Transfer"
+        },
+        "reports": {
+            "header-name": "Reports",
+            "inventory": "Inventory",
+            "transfers": "Transfers"
+        }
+    },
+
+    "auth": {
+        "username": "Username",
+        "password": "Password",
+        "username-required": "Username is required.",
+        "password-required": "Password is required.",
+        "password-length": "Password should be at least 6 character long.",
+        "wrong-credentials": "Username or password is wrong.",
+        "user-not-found": "The integration could not be completed because the user does not exist in the other system. Please check your login credentials.",
+        "integration-timeout": "Something happened while integration your data into LogD Cosmos. Please try again later.",
+        "integration-in-progress": "There are some integration processes we need to take care of. Please wait while integration is in progress.",
+        "integration-already-completed": "The integration is already completed.",
+        "session-timeout": "You session has been timed out. Please sign in again.",
+        "access-denied": "You do not have a permission to access the resource. Please sign in again to refresh your permissions.",
+        "need-login": "You have to sign in to access the resource.",
+        "login": "Login",
+        "logout": "Logout",
+        "logout-success": "You have logged out successfully."
+    },
+
+    "integrations": {
+        "history": {
+            "initial": {
+                "header": "Initial",
+                "summary": "Users for warehouses were created",
+                "content-1": "In this integration, users for your each warehouse were created and assigned default passwords. This was your first initial integration from Milkrun LogD to LogD Cosmos.",
+                "content-2": "A quick reminder: You can generate passwords for your warehouse users or update a specific one's password with an arbitrary password in the Business → Warehouses menu."
+            }
+        },
+
+        "initial": {
+            "header-1": "Users Are Created!",
+            "content-1": "This was your initial integration from Milkrun LogD to LogD Cosmos. During this integration, we have gathered the information about your warehouses and created a user for each one of them.",
+            "header-2": "Next Step",
+            "content-2": "Please download the Excel file now to save the created usernames and their passwords. After closing this window, you will no longer be able to view the passwords of the users, as passwords are saved one-way and securely in our system.",
+            "header-3": "Password Recovery",
+            "content-3": "In case the passwords are lost or forgotten, you, as the business account, can still generate new passwords for your warehouse users and download them as an Excel file. This can be done for specific users or all users. Please note that generating new passwords will invalidate the old ones. So that, we suggest generating passwords only for the necessary ones.",
+            "content-4": "In order to generate new passwords, please go to the Business → Warehouses menu.",
+            "file-name": "users",
+            "download-fail": "Something went wrong. Please follow the password recovery instructions to generate new passwords."
+        },
+
+        "sync": {
+            "up-to-date": "The warehouses' data are already up-to-date.",
+            "header-1": "Synchronization Completed!",
+            "content-1": "New warehouses from Milkrun LogD has been added to LogD Cosmos. Please download the Excel file now to save the usernames and the password that are created for the new warehouses.",
+            "file-name": "new-users",
+            "download-fail": "Something went wrong. In order to get new passwords please select the warehouses that have been created and then generate passwords."
+        }
+    },
+
+    "dashboard": {
+        "overview": {
+            "account-type-content": "You have signed in as {{name}} - {{type}}",
+            "affiliated-business": "Affiliated Business: {{name}}",
+            "business-account": "Business Account",
+            "warehouse-account": "Warehouse Account"
+        }
+    },
+
+    "business": {
+        "warehouses": {
+            "generate-passwords": {
+                "header-1": "Passwords Generated!",
+                "content-1": "Please download the Excel file now to save the generated password for the warehouses.",
+                "file-name": "new-passwords",
+                "download-fail": "Something went wrong. Please re-generate the passwords and try again."
+            },
+
+            "update-password": {
+                "header": "Update Password",
+                "confirm-header": "Update Password Confirmation",
+                "confirm-message": "Are you sure you want to change this user's password?",
+                "success": "The password of the user belonging to the warehouse has been updated."
+            }
+        }
+    },
+
+    "warehouse-operations": {
+        "boxes": {
+            "up-to-date": "The boxes' data are already up-to-date.",
+            "success": "The boxes' data have been synchronized."
+        },
+
+        "transfer": {
+            "no-boxes": "There is no type of boxes to send.",
+            "send-boxes-dialog": {
+                "header": "Send Boxes",
+                "content-1": "If you do not see the box type you are looking for, please click the button down below to synchronize the boxes' data.",
+                "box": "Box",
+                "quantity": "Quantity",
+                "box-required": "Box is required.",
+                "quantity-required": "Quantity is required.",
+                "quantity-wrong": "Quantity cannot be lower than 1.",
+                "quantity-integer": "Quantity can only be an integer.",
+                "delivery-note": "Delivery Note",
+                "delivery-note-required": "Delivery note is required.",
+                "success": "The boxes have been sent successfully.",
+                "box-status-full": "Full",
+                "box-status-empty": "Empty",
+                "box-status-required": "Required",
+                "box-status": "Box Status"
+            }
+        },
+        "warehouse-selection": "Destination Warehouse"
+    },
+
+    "errors": {
+        "page-not-found": "Page Not Found",
+        "not-found-content": "We are sorry that the page you are looking for could not be found. Please go back to the homepage.",
+        "not-found-sidenav-content": "We are sorry that the page you are looking for could not be found. Please go back to the dashboard.",
+        "go-homepage": "Go Homepage",
+        "go-dashboard": "Go Dashboard",
+        "global-error": "An unexcepted error occured.",
+        "wrong-data": "Invalid data was provided.",
+        "page-under-development": "This page is under development."
+    },
+
+    "table": {
+        "pagination": {
+            "items-per-page": "Items per page:",
+            "next-page": "Next page",
+            "previous-page": "Previous page",
+            "first-page": "First page",
+            "last-page": "Last page"
+        },
+
+        "manage": {
+            "change-password": "Change Password",
+            "send-password": "Send Password"
+        },
+
+        "warehouse": {
+            "name": "Name",
+            "username": "Username",
+            "type": "Type",
+            "erpCode": "ERP Code",
+            "address-street": "Address Street",
+            "address-district": "Address District",
+            "address-zipCode": "Address Zip Code",
+            "address-city": "Address City",
+            "address-country": "Address Country",
+            "contact-name": "Contact Name",
+            "contact-email": "Contact Email",
+            "contact-phone": "Contact Phone",
+            "Undefined": "Undefined",
+            "MainWarehouse": "Main Warehouse",
+            "Warehouse": "Warehouse",
+            "Store": "Store",
+            "RoadDepot": "Road Depot",
+            "SuperUser": "Super User",
+            "returnToWarehouse": "Return to Warehouse",
+            "returnToMainWarehouse": "Return to Main Warehouse",
+            "save": "Save",
+            "save-all": "Save All",
+            "save-business": "Save Business"
+        },
+
+        "boxes": {
+            "code": "Code",
+            "name": "Name",
+            "description": "Description",
+            "type": "Type",
+            "volume": "Volume",
+            "empty-volume": "Empty Volume",
+            "Undefined": "Undefined",
+            "Normal": "Normal",
+            "Cardboard": "Cardboard"
+        }
+    },
+
+    "excel": {
+        "download-excel": "Download Excel",
+        "download-started": "The Excel file is being prepared.",
+        "download-success": "The Excel file has been created successfully.",
+
+        "warehouse": {
+            "column-names": {
+                "name": "Name",
+                "erpCode": "ERP Code",
+                "username": "Username",
+                "password": "Password",
+                "type": "Type",
+                "address-street": "Address Street",
+                "address-district": "Address District",
+                "address-zipCode": "Address Zip Code",
+                "address-city": "Address City",
+                "address-country": "Address Country",
+                "contactInfo-name": "Contact Name",
+                "contactInfo-email": "Contact Email",
+                "contactInfo-phone": "Contact Phone"
+            }
+        }
+    }
+}

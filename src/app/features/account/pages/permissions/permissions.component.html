@@ -1,0 +1,104 @@
+<app-loading>
+    <div class="table-container" *ngIf="canShowThePage">
+        <div class="tools">
+            <mat-form-field class="tool-item">
+                <mat-label>{{ 'actions.search' | translate }}</mat-label>
+                <input matInput type="text" [(ngModel)]="searchText">
+                <button matSuffix mat-icon-button (click)="onSearchClearClicked()" *ngIf="searchText">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <button mat-fab class="tools-btn tool-item" (click)="onSearchClicked()">
+                <mat-icon class="tools-btn-icon">search</mat-icon>
+            </button>
+            <button mat-fab class="tools-btn tool-item" (click)="onSyncClicked()">
+                <mat-icon class="tools-btn-icon">sync</mat-icon>
+            </button>
+        </div>
+
+        <!-- Accordion for business groups -->
+        <mat-accordion class="permissions-accordion">
+            <mat-expansion-panel *ngFor="let businessGroup of warehousesByBusiness">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{ businessGroup.businessName }}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{ businessGroup.count }} warehouses
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <section class="mat-elevation-z8 table-section" tabindex="0">
+                    <table mat-table [dataSource]="businessGroup.dataSource" class="table">
+                        <!-- Username Column -->
+                        <ng-container matColumnDef="username">
+                            <th mat-header-cell *matHeaderCellDef> {{ 'table.warehouse.username' | translate }} </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.username }} </td>
+                        </ng-container>
+
+                        <!-- Return to Warehouse Column -->
+                        <ng-container matColumnDef="returnToWarehouse">
+                            <th mat-header-cell *matHeaderCellDef style="text-align: center;">
+                                <mat-checkbox (change)="toggleAllCheckboxes('returnToWarehouse', businessGroup)"
+                                              [checked]="isAllSelectedForColumn('returnToWarehouse', businessGroup)"
+                                              [indeterminate]="businessGroup.warehouseSelection.selected.length > 0 && 
+                                                                businessGroup.warehouseSelection.selected.length < businessGroup.warehouses.length">
+                                    {{ 'table.warehouse.returnToWarehouse' | translate }}
+                                </mat-checkbox>
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: center;">
+                                <mat-checkbox [(ngModel)]="element.returnToWarehouse" 
+                                             (change)="businessGroup.warehouseSelection.toggle(element)"></mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <!-- Return to Main Warehouse Column -->
+                        <ng-container matColumnDef="returnToMainWarehouse">
+                            <th mat-header-cell *matHeaderCellDef style="text-align: center;">
+                                <mat-checkbox (change)="toggleAllCheckboxes('returnToMainWarehouse', businessGroup)"
+                                              [checked]="isAllSelectedForColumn('returnToMainWarehouse', businessGroup)"
+                                              [indeterminate]="businessGroup.mainWarehouseSelection.selected.length > 0 && 
+                                                                businessGroup.mainWarehouseSelection.selected.length < businessGroup.warehouses.length">
+                                    {{ 'table.warehouse.returnToMainWarehouse' | translate }}
+                                </mat-checkbox>
+                            </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: center;">
+                                <mat-checkbox [(ngModel)]="element.returnToMainWarehouse" 
+                                             (change)="businessGroup.mainWarehouseSelection.toggle(element)"></mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <!-- Submit Column -->
+                        <ng-container matColumnDef="submit">
+                            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> {{ 'table.warehouse.save' | translate }} </th>
+                            <td mat-cell *matCellDef="let element" style="text-align: center;">
+                                <button mat-raised-button color="primary" (click)="submitRow(element)">
+                                    {{ 'table.warehouse.save' | translate }}
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <!-- Table Rows -->
+                        <tr mat-header-row *matHeaderRowDef="columnNames; sticky: true"></tr>
+                        <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+                    </table>
+                </section>
+
+                <div class="save-business-container" style="margin-top: 20px; text-align: right;">
+                    <button mat-raised-button color="primary" (click)="saveAllForBusiness(businessGroup)">
+                        {{ 'table.warehouse.save-business' | translate }}
+                    </button>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <div class="save-all-container" style="margin-top: 20px; text-align: right; margin-bottom: 20px;">
+            <button mat-raised-button color="primary" (click)="saveAllSelected()">
+                {{ 'table.warehouse.save-all' | translate }}
+            </button>
+        </div>
+    </div>
+    <div *ngIf="!canShowThePage">
+        {{ 'warehouse-operations.transfer.no-permission' | translate }}
+    </div>
+</app-loading>

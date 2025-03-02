@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="content">
+        <mat-spinner class="spinner"
+                     *ngIf="data.isLoading"
+                     [diameter]="50">
+        </mat-spinner>
+        <span class="text">{{ data.message | translate }}</span>
+    </div>
+    <button mat-fab
+            *ngIf="data.hasButton && data.buttonIcon"
+            (click)="onClose()">
+        <mat-icon>{{ data.buttonIcon }}</mat-icon>
+    </button>
+</div>
