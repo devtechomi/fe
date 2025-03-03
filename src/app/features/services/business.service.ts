@@ -26,6 +26,16 @@ export class BusinessService {
     });
   }
 
+  async sendAllUserNewPasswords(erpCodes: string[]): Promise<Partial<ApiResponse>> {
+    return await this.httpService.patch({
+      controller: 'api/email',
+      routes: ['password', 'sendEmailAll'],
+      body: {
+        erpCodes
+      }
+    });
+  }
+
   async updateUserPassword(erpCode: string, password: string): Promise<Partial<ApiResponse>> {
     return await this.httpService.patch({
       controller: 'business',

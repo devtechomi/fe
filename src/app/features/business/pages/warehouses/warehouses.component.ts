@@ -191,6 +191,26 @@ export class WarehousesComponent implements OnInit {
     this.loadingComponent.changeState(false, false);
   }
 
+  async sendAllUSerNewPassword() {
+    this.loadingComponent.changeState(true, false);
+    console.log(this.tableData.data)
+    const erpCodes = this.tableData.data.map(x => x.erpCode);
+    console.log(erpCodes);
+    const response = await this.businessService.sendAllUserNewPasswords(erpCodes)
+    if (response.isSuccess) {
+      this.toasterNotificationService.showToaster({
+        type: ToasterType.Success,
+        messageKey: 'integrations.sync.up-to-date'
+      });
+    } else {
+      this.toasterNotificationService.showToaster({
+        type: ToasterType.Error,
+        messageKey: 'errors.global-error'
+      });
+    }
+    this.loadingComponent.changeState(false, false);
+  }
+
   async onSyncClicked() {
     this.loadingComponent.changeState(true, false);
 

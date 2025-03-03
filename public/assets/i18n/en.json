@@ -13,7 +13,8 @@
         "update": "Update",
         "send": "Send",
         "sync": "Synchronize",
-        "generate-passwords": "Generate Passwords"
+        "generate-passwords": "Generate Passwords",
+        "send-all-user": "Send All Password Email"
     },
 
     "sidenav": {

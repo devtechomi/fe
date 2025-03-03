@@ -13,7 +13,8 @@
         "update": "Değiştir",
         "send": "Gönder",
         "sync": "Senkronize Et",
-        "generate-passwords": "Yeni Şifre Üret"
+        "generate-passwords": "Yeni Şifre Üret",
+        "send-all-user": "Şifreleri Gönder"
     },
 
     "sidenav": {

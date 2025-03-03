@@ -14,6 +14,10 @@
                 <mat-icon class="tools-btn-icon">search</mat-icon>
             </button>
             <span class="spacer"></span>
+            <button mat-fab extended class="tools-btn tool-item" (click)="sendAllUSerNewPassword()">
+                <mat-icon class="tools-btn-icon">email</mat-icon>
+                {{ 'actions.send-all-user' | translate }}
+            </button>
             <button mat-fab extended class="tools-btn tool-item" (click)="onGeneratePasswordsClicked()" [disabled]="selection.selected.length == 0">
                 <mat-icon class="tools-btn-icon">lock_reset</mat-icon>
                 {{ 'actions.generate-passwords' | translate }}
