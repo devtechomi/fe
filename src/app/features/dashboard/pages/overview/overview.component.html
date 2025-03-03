@@ -1,10 +1,17 @@
-<app-loading>
-    <div class="overview-container">
-        <ng-container *ngIf="canShowTransferScreen">
-            <app-transfer></app-transfer>
-        </ng-container>
-        <ng-container *ngIf="!canShowTransferScreen">
-            <h1>Hoşgeldiniz {{ username }} </h1>
-        </ng-container>
-    </div>
-</app-loading>
+
+<div class="overview-container">
+    <ng-container *ngIf="isSuser">
+        <div>Super User</div>
+    </ng-container>
+    
+    <ng-container *ngIf="!isSuser">
+        <app-loading>
+            <ng-container *ngIf="canShowTransferScreen">
+                <app-transfer></app-transfer>
+            </ng-container>
+            <ng-container *ngIf="!canShowTransferScreen">
+                <h1>Hoşgeldiniz {{ username }} </h1>
+            </ng-container>
+        </app-loading>
+    </ng-container>
+</div>

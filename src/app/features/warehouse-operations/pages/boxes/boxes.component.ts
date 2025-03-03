@@ -13,6 +13,7 @@ import { ApiResponse } from '../../../../core/models/api-response';
 import { ToasterNotificationService } from '../../../../shared/services/notifications/toaster-notification.service';
 import { ToasterType } from '../../../../shared/models/notifications/toaster-type';
 import { TokenService } from '../../../../core/auth/services/token.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-boxes',
@@ -22,7 +23,8 @@ import { TokenService } from '../../../../core/auth/services/token.service';
     MatPaginatorModule,
     TranslateModule,
     LoadingComponent,
-    MatButtonModule
+    MatButtonModule,
+    CommonModule
   ],
   templateUrl: './boxes.component.html',
   styleUrl: './boxes.component.scss'
@@ -49,6 +51,7 @@ export class BoxesComponent implements OnInit {
   public count: number = 0;
   private currentPage: number = this.firstPage;
   private pageSize: number = this.defaultPageSize;
+  public isSuser: boolean = false;
 
   constructor(private accountService: AccountService,
               private tokenService: TokenService,
@@ -56,13 +59,18 @@ export class BoxesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.tokenService.isAuthenticated.value)
-      return;
-
-    this.accountService.getBoxes(this.firstPage, this.defaultPageSize).then((response) => {
-      this.fillTable(response);
-      this.loadingComponent.changeState(false, false);
-    });
+    const accountType = localStorage.getItem('accountType');
+    this.isSuser = accountType === 'SuperUser' ? true : false;
+    console.log(this.isSuser);
+    if (!this.isSuser) {
+      if (!this.tokenService.isAuthenticated.value)
+        return;
+  
+      this.accountService.getBoxes(this.firstPage, this.defaultPageSize).then((response) => {
+        this.fillTable(response);
+        this.loadingComponent.changeState(false, false);
+      });
+    }
   }
 
   fillTable(response: Partial<ApiResponse>) {

@@ -57,6 +57,12 @@ export class BusinessService {
     });
   }
 
+  async getAllPermissions(): Promise<Partial<ApiResponse>> {
+    return await this.httpService.get({
+      controller: 'api/Permission',
+    });
+  }
+
   async submitAllUserPermissions(selectedUsers: any[]): Promise<Partial<ApiResponse>> {
     console.log(selectedUsers);
     

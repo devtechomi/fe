@@ -1,3 +1,5 @@
+<ng-container *ngIf="isSuser">
+    
 <app-loading>
     <div class="table-container" *ngIf="canShowThePage">
         <div class="tools">
@@ -102,3 +104,7 @@
         {{ 'warehouse-operations.transfer.no-permission' | translate }}
     </div>
 </app-loading>
+</ng-container>
+<ng-container *ngIf="!isSuser">
+    {{ 'warehouse-operations.transfer.no-permission' | translate }}
+</ng-container>

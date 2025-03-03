@@ -85,6 +85,7 @@ export class PermissionsComponent implements OnInit {
   private pageSize: number = this.defaultPageSize;
   public canShowThePage: boolean = false;
   public isAnyCheckboxChecked: boolean = false;
+  public isSuser: boolean = false;
 
   constructor(private accountService: AccountService,
               private businessService: BusinessService,
@@ -94,39 +95,42 @@ export class PermissionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const accountType = localStorage.getItem('accountType');
+    this.isSuser = accountType === 'SuperUser' ? true : false;
+    this.canShowThePage = accountType === 'SuperUser' ? true : false;
+  }
+
+  ngAfterViewInit(): void {
+    if(!this.isSuser)
+      return
+
     if (!this.tokenService.isAuthenticated.value)
       return;
 
-    const userType = JSON.parse(localStorage.getItem('user-info') || '{}')?.warehouse?.type;
-    console.log(userType);
+    const userType = localStorage.getItem('accountType')
     
     if (userType == 'SuperUser') {
       this.canShowThePage = true;
     }
 
-    this.accountService.getWarehouses(this.firstPage, this.defaultPageSize).then((response) => {
+    this.businessService.getAllPermissions().then((response) => {
       this.processWarehousesData(response);
       this.loadingComponent.changeState(false, false);
     });
   }
 
-  processWarehousesData(response: Partial<ApiResponse>) {
+  processWarehousesData(response: any) {
     let warehouses: Warehouse[] = [];
-    response.data.forEach((item: any) => {
+    response.forEach((item: any) => {
       let warehouse = flattenJson(item.warehouse);
-      warehouse.username = item.username;
-      warehouse.userId = item.userId;
-      warehouse.returnToWarehouse = item.returnToWarehouse;
-      warehouse.returnToMainWarehouse = item.returnToMainWarehouse;
-      warehouse.businessId = item.businessId;
-      warehouse.businessName = item.businessName;
+      warehouse.username = item.getMyDataParams.username;
+      warehouse.userId = item.permission.userId;
+      warehouse.returnToWarehouse = item.permission.returnToWarehouse;
+      warehouse.returnToMainWarehouse = item.permission.returnToMainWarehouse;
+      warehouse.businessId = item.getMyDataParams.business.businessId;
+      warehouse.businessName = item.getMyDataParams.business.name;
       warehouses.push(warehouse);
     });
-
-    // Sadece "super user" olanları filtrele
-    warehouses = warehouses.filter(warehouse => warehouse.type !== 'SuperUser');
-    this.allWarehouses = warehouses;
-    this.count = response.metadata.count;
     
     // Warehouses'ları businessId'ye göre grupla
     this.groupWarehousesByBusiness(warehouses);
@@ -230,8 +234,6 @@ export class PermissionsComponent implements OnInit {
         selectionModel.deselect(row);
       }
     });
-
-    console.log(`Checkboxes in column ${column} for business ${businessGroup.businessName} are now ${!allSelected ? 'selected' : 'deselected'}.`);
   }
 
   submitRow(element: PermissionRequest) {
@@ -262,8 +264,6 @@ export class PermissionsComponent implements OnInit {
       returnToWarehouse: !!element.returnToWarehouse,
       returnToMainWarehouse: !!element.returnToMainWarehouse
     }));
-
-    console.log(`Tüm seçili öğeler for ${businessGroup.businessName}:`, selectedPermissions);
 
     this.businessService.submitAllUserPermissions(selectedPermissions).then(response => {
       if (response.isSuccess) {
@@ -300,8 +300,6 @@ export class PermissionsComponent implements OnInit {
         selectedPermissions.push(permissionRequest);
       });
     });
-
-    console.log('Tüm seçili öğeler:', selectedPermissions);
 
     this.businessService.submitAllUserPermissions(selectedPermissions).then(response => {
       if (response.isSuccess) {

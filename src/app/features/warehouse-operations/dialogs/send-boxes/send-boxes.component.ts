@@ -232,6 +232,7 @@ export class SendBoxesComponent implements OnInit {
     this.dialogRef.disableClose = true;
 
     const transfers = this.sendBoxData.map((value) => {
+      console.log(value);
       return {
         erpCode: value.warehouse.erpCode,
         deliveryNote: value.deliveryNote ?? '',
@@ -240,7 +241,7 @@ export class SendBoxesComponent implements OnInit {
         boxStatus: value.boxStatus ?? 'full'
       }
     });
-    
+    console.log(transfers);
     const response = await this.userService.sendBoxes(transfers);
 
     this.isLoading = false;
