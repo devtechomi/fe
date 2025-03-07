@@ -151,7 +151,7 @@
                 "quantity": "Adet",
                 "box-required": "Kutu alanı zorunlu.",
                 "quantity-required": "Adet alanı zorunlu.",
-                "quantity-wrong": "Adet 1'den küçük olamaz.",
+                "quantity-wrong": "Adet 3'den küçük olamaz.",
                 "quantity-integer": "Adet sadece tam sayı olabilir.",
                 "delivery-note": "İrsaliye",
                 "delivery-note-required": "İrsaliye alanı zorunlu.",
@@ -256,6 +256,13 @@
                 "contactInfo-email": "Kontak Email",
                 "contactInfo-phone": "Kontak Telefon"
             }
+        }
+    },
+
+    "permissions": {
+        "save": {
+            "success": "İşlem Başarılı",
+            "error": "İşlem sırasında bir hata oluştu"
         }
     }
 }

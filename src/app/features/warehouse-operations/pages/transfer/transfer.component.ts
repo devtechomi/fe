@@ -205,7 +205,7 @@ export class TransferComponent implements OnInit {
 
     for (const item of this.sendBoxData) {
       if (!item.boxCode || !item.deliveryNote || !item.boxStatus) return false;
-      if (item.quantity == null || item.quantity < 1 || item.quantity % 1 !== 0) return false;
+      if (item.quantity == null || item.quantity < 3 || item.quantity % 1 !== 0) return false;
     }
 
     return true;

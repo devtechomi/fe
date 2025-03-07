@@ -19,29 +19,22 @@ export class LocalizationService {
   }
 
   initializeLanguage(): void {
-    this.translateService.addLangs(this.supportedLanguages.map(lang => lang.code))
+    this.translateService.addLangs(this.supportedLanguages.map(lang => lang.code));
     this.translateService.setDefaultLang(this.defaultLanguageCode);
-
-    let langCode: string | null | undefined = localStorage.getItem('language');
-    if (langCode == null) {
-      langCode = this.translateService.getBrowserLang();
-      if (langCode == undefined) {
+  
+    let langCode: string | null = localStorage.getItem('language');
+  
+    if (!langCode) {
+      if (!langCode || !this.supportedLanguages.some(l => l.code === langCode)) {
         langCode = this.defaultLanguageCode;
       }
-      else {
-        let language = this.supportedLanguages.find(l => l.code == langCode);
-        if (language == undefined) {
-          langCode = this.defaultLanguageCode;
-        }
-        else {
-          langCode = language.code;
-        }
-      }
     }
-
-    this.currentLanguage = this.supportedLanguages.find(l => l.code == langCode);
+  
+    this.currentLanguage = this.supportedLanguages.find(l => l.code === langCode);
     this.translateService.use(this.currentLanguage!.code);
+    localStorage.setItem('language', this.currentLanguage!.code);
   }
+  
 
   switchLanguage(langCode: string | undefined): void {
     if (langCode == undefined)

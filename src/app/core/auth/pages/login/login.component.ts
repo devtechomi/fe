@@ -97,8 +97,6 @@ export class LoginComponent implements OnInit {
       else {
         this.integrationService.initialize(response);
       }
-      console.log(response);
-
       this.router.navigate([this.returnUrl]);
     }
     

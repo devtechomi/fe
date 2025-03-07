@@ -60,9 +60,9 @@
 
                 <mat-form-field style="width: 100%; margin-top: 10px;">
                     <mat-label>{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity' | translate }}</mat-label>
-                    <input matInput [(ngModel)]="element.quantity" required min="1" type="number" name="quantity-{{i}}" [disabled]="isLoading">
+                    <input matInput [(ngModel)]="element.quantity" required min="3" type="number" name="quantity-{{i}}" [disabled]="isLoading">
                     <mat-error *ngIf="element.quantity === null || element.quantity === undefined">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-required' | translate }}</mat-error>
-                    <mat-error *ngIf="element.quantity !== null && element.quantity !== undefined && element.quantity < 1">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-wrong' | translate }}</mat-error>
+                    <mat-error *ngIf="element.quantity !== null && element.quantity !== undefined && element.quantity < 4">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-wrong' | translate }}</mat-error>
                     <mat-error *ngIf="element.quantity !== null && element.quantity !== undefined && element.quantity % 1 !== 0">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-integer' | translate }}</mat-error>
                 </mat-form-field>
 

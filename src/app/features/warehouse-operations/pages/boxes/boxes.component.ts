@@ -61,7 +61,6 @@ export class BoxesComponent implements OnInit {
   ngOnInit(): void {
     const accountType = localStorage.getItem('accountType');
     this.isSuser = accountType === 'SuperUser' ? true : false;
-    console.log(this.isSuser);
     if (!this.isSuser) {
       if (!this.tokenService.isAuthenticated.value)
         return;

@@ -244,5 +244,12 @@
                 "contactInfo-phone": "Contact Phone"
             }
         }
+    },
+
+    "permissions": {
+        "save": {
+            "success": "İşlem Başarılı",
+            "error": "İşlem sırasında bir hata oluştu"
+        }
     }
 }

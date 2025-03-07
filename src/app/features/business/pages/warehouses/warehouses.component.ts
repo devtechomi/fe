@@ -193,9 +193,7 @@ export class WarehousesComponent implements OnInit {
 
   async sendAllUSerNewPassword() {
     this.loadingComponent.changeState(true, false);
-    console.log(this.tableData.data)
     const erpCodes = this.tableData.data.map(x => x.erpCode);
-    console.log(erpCodes);
     const response = await this.businessService.sendAllUserNewPasswords(erpCodes)
     if (response.isSuccess) {
       this.toasterNotificationService.showToaster({
@@ -255,11 +253,7 @@ export class WarehousesComponent implements OnInit {
     });
   }
   sendPassword(email: string) {  
-    console.log(email);
     const password = localStorage.getItem('password');
-
-    console.log('Email:', email);
-    console.log('Password:', password);
 
     if (!email || !password) {
       this.toasterNotificationService.showToaster({

@@ -118,7 +118,6 @@ export class OverviewComponent implements OnInit {
   }
 
   hasAnyPermission(): boolean {
-    console.log(this.userPermissions);
     return !!(this.userPermissions && (this.userPermissions.returnToWarehouse || this.userPermissions.returnToMainWarehouse));
   }
 }

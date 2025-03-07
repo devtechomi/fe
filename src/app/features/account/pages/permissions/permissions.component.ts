@@ -127,7 +127,7 @@ export class PermissionsComponent implements OnInit {
       warehouse.userId = item.permission.userId;
       warehouse.returnToWarehouse = item.permission.returnToWarehouse;
       warehouse.returnToMainWarehouse = item.permission.returnToMainWarehouse;
-      warehouse.businessId = item.getMyDataParams.business.businessId;
+      warehouse.businessId = item.getMyDataParams.business.externalId;
       warehouse.businessName = item.getMyDataParams.business.name;
       warehouses.push(warehouse);
     });
@@ -139,10 +139,8 @@ export class PermissionsComponent implements OnInit {
   groupWarehousesByBusiness(warehouses: Warehouse[]) {
     // Önce clear yapalım
     this.warehousesByBusiness = [];
-    
     // BusinessId'leri unique olarak al
     const businessIds = [...new Set(warehouses.map(w => w.businessId))];
-    
     businessIds.forEach(businessId => {
       const businessWarehouses = warehouses.filter(w => w.businessId === businessId);
       const businessName = businessWarehouses[0]?.businessName || 'Unknown';
