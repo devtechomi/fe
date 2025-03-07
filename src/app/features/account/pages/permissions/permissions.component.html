@@ -2,22 +2,6 @@
     
 <app-loading>
     <div class="table-container" *ngIf="canShowThePage">
-        <div class="tools">
-            <mat-form-field class="tool-item">
-                <mat-label>{{ 'actions.search' | translate }}</mat-label>
-                <input matInput type="text" [(ngModel)]="searchText">
-                <button matSuffix mat-icon-button (click)="onSearchClearClicked()" *ngIf="searchText">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
-            <button mat-fab class="tools-btn tool-item" (click)="onSearchClicked()">
-                <mat-icon class="tools-btn-icon">search</mat-icon>
-            </button>
-            <button mat-fab class="tools-btn tool-item" (click)="onSyncClicked()">
-                <mat-icon class="tools-btn-icon">sync</mat-icon>
-            </button>
-        </div>
-
         <!-- Accordion for business groups -->
         <mat-accordion class="permissions-accordion">
             <mat-expansion-panel *ngFor="let businessGroup of warehousesByBusiness">

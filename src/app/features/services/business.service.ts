@@ -48,7 +48,6 @@ export class BusinessService {
   }
 
   async sendUserPassword(email: string, password: string): Promise<Partial<ApiResponse>> {
-    console.log(email, password);
     return await this.httpService.post({
       controller: 'api/Email',
       body: {
@@ -59,7 +58,6 @@ export class BusinessService {
   }
 
   async submitUserPermissions(selectedUsers: any[]): Promise<Partial<ApiResponse>> {
-    console.log(selectedUsers);
     
     return await this.httpService.post({
       controller: 'api/permission',
@@ -74,8 +72,6 @@ export class BusinessService {
   }
 
   async submitAllUserPermissions(selectedUsers: any[]): Promise<Partial<ApiResponse>> {
-    console.log(selectedUsers);
-    
     return await this.httpService.post({
       controller: 'api/permission/all',
       body: selectedUsers

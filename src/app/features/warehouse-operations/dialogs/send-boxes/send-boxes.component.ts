@@ -106,12 +106,10 @@ export class SendBoxesComponent implements OnInit {
 
   private async loadPermissions() {
     const userId = this.tokenService.getDecodedToken();
-    console.log('Loading permissions for userId:', userId);
     
     try {
         if (userId) {
             const response = await this.userService.getUserPermissions(userId);
-            console.log('API Response:', response);
             
             this.userPermissions = {
                 returnToWarehouse: response.returnToWarehouse,
@@ -125,12 +123,9 @@ export class SendBoxesComponent implements OnInit {
                 this.selectedTransferType = 'ReturnToMainWarehouse';
             }
             
-            console.log('Set User Permissions:', this.userPermissions);
-            console.log('Selected Transfer Type:', this.selectedTransferType);
             this.permissionLoaded = true;
         }
     } catch (error) {
-        console.error('Yetki bilgileri alınamadı:', error);
         this.permissionLoaded = true;
         this.toasterNotificationService.showToaster({
             type: ToasterType.Error,
@@ -186,7 +181,6 @@ export class SendBoxesComponent implements OnInit {
 
   onTransferTypeChange(value: string) {
     this.selectedTransferType = value;
-    console.log('Seçilen transfer tipi:', value);
     
     if (value === 'ReturnToWarehouse') {
         // Ana depoyu bul ve otomatik seç
@@ -232,7 +226,6 @@ export class SendBoxesComponent implements OnInit {
     this.dialogRef.disableClose = true;
 
     const transfers = this.sendBoxData.map((value) => {
-      console.log(value);
       return {
         erpCode: value.warehouse.erpCode,
         deliveryNote: value.deliveryNote ?? '',
@@ -241,7 +234,6 @@ export class SendBoxesComponent implements OnInit {
         boxStatus: value.boxStatus ?? 'full'
       }
     });
-    console.log(transfers);
     const response = await this.userService.sendBoxes(transfers);
 
     this.isLoading = false;
@@ -287,7 +279,6 @@ export class SendBoxesComponent implements OnInit {
       };
     });
 
-    console.log('SendBoxData güncellendi:', this.sendBoxData);
   }
 
   // Filtreleme fonksiyonu ekleyelim
