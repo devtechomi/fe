@@ -121,9 +121,10 @@ export class PermissionsComponent implements OnInit {
 
   processWarehousesData(response: any) {
     let warehouses: Warehouse[] = [];
+    console.log(response)
     response.forEach((item: any) => {
       let warehouse = flattenJson(item.warehouse);
-      warehouse.username = item.getMyDataParams.username;
+      warehouse.username = item?.getMyDataParams?.warehouse?.name || 'test';
       warehouse.userId = item.permission.userId;
       warehouse.returnToWarehouse = item.permission.returnToWarehouse;
       warehouse.returnToMainWarehouse = item.permission.returnToMainWarehouse;

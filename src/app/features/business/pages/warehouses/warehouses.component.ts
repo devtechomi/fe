@@ -176,19 +176,33 @@ export class WarehousesComponent implements OnInit {
   }
 
   async onGeneratePasswordsClicked() {
-    this.loadingComponent.changeState(true, false);
-
-    const erpCodes = this.selectedRows.get().map(value => value.erpCode);
-    const response = await this.businessService.generatePasswords(erpCodes)
-    if (response.isSuccess) {
-      if (response.data.warehouses.length != 0) {
-        this.dialogService.openCustomDialog(GeneratedPasswordsComponent, {
-          data: response.data
-        });
+    // Dialog'u açmadan önce yükleme göstergesini açmıyoruz
+    this.dialogService.openQuestionDialog({
+      titleKey: 'business.warehouses.generate-password.confirm-header',
+      messageKey: 'business.warehouses.generate-password.confirm-message',
+      noButtonTextKey: 'actions.no',
+      yesButtonTextKey: 'actions.yes',
+      onYesClicked: () => {
+        this.loadingComponent.changeState(true, false);
+        
+        try {
+          const erpCodes = this.selectedRows.get().map(value => value.erpCode);
+          this.businessService.generatePasswords(erpCodes).then((response) => {
+            if (response.isSuccess && response.data.warehouses.length !== 0) {
+              this.dialogService.openCustomDialog(GeneratedPasswordsComponent, {
+                data: response.data
+              });
+            }
+          });
+        } catch (error) {
+          // Hata yönetimi burada yapılabilir
+          console.error('Password generation error:', error);
+        } finally {
+          // İşlem tamamlandığında yükleme göstergesini kapatıyoruz
+          this.loadingComponent.changeState(false, false);
+        }
       }
-    }
-
-    this.loadingComponent.changeState(false, false);
+    });
   }
 
   async sendAllUSerNewPassword() {

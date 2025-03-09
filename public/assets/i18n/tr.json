@@ -132,6 +132,13 @@
                 "confirm-message": "Şifreyi göndermek istediğinizden emin misiniz?",
                 "success": "Şifre başarıyla gönderildi",
                 "no-email": "Kullanıcının email adresi bulunamadı."
+            },
+
+            "generate-password": {
+                "confirm-header": "Şifre Oluşturma",
+                "confirm-message": "Yeni şifre oluşturmak istediğinizden emin misiniz?",
+                "success": "Şifreler başarıyla oluşturuldu",
+                "error": "Şifre oluşturma sırasına bir hata oluştu"
             }
         }
     },
