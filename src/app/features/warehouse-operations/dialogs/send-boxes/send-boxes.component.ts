@@ -50,7 +50,7 @@ export class SendBoxesComponent implements OnInit {
   public isLoading: boolean = false;
   public isSyncing: boolean = false;
   public isSending: boolean = false;
-
+  public isRequired: boolean = false;
   public transferComponent!: TransferComponent;
   public userPermissions: Permission | null = null;
   public selectedTransferType: string | null = null;

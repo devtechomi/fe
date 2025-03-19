@@ -60,10 +60,22 @@
 
                 <mat-form-field style="width: 100%; margin-top: 10px;">
                     <mat-label>{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity' | translate }}</mat-label>
-                    <input matInput [(ngModel)]="element.quantity" required min="3" type="number" name="quantity-{{i}}" [disabled]="isLoading">
-                    <mat-error *ngIf="element.quantity === null || element.quantity === undefined">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-required' | translate }}</mat-error>
-                    <mat-error *ngIf="element.quantity !== null && element.quantity !== undefined && element.quantity < 4">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-wrong' | translate }}</mat-error>
-                    <mat-error *ngIf="element.quantity !== null && element.quantity !== undefined && element.quantity % 1 !== 0">{{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-integer' | translate }}</mat-error>
+                    <input matInput 
+                           [(ngModel)]="element.quantity" 
+                           [required]="element.boxStatus === 'empty'"
+                           min="3" 
+                           type="number" 
+                           name="quantity-{{i}}" 
+                           [disabled]="isLoading">
+                    <mat-error *ngIf="element.boxStatus === 'empty' && (element.quantity === null || element.quantity === undefined)">
+                        {{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-required' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="element.boxStatus === 'empty' && element.quantity !== null && element.quantity !== undefined && element.quantity < 4">
+                        {{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-wrong' | translate }}
+                    </mat-error>
+                    <mat-error *ngIf="element.boxStatus === 'empty' && element.quantity !== null && element.quantity !== undefined && element.quantity % 1 !== 0">
+                        {{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-integer' | translate }}
+                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field style="width: 100%; margin-top: 10px;">
@@ -74,7 +86,11 @@
 
                 <mat-form-field style="width: 100%; margin-top: 10px;">
                     <mat-label>{{ 'warehouse-operations.transfer.send-boxes-dialog.box-status' | translate }}</mat-label>
-                    <mat-select [(ngModel)]="element.boxStatus" required name="boxStatus-{{i}}" [disabled]="isLoading">
+                    <mat-select [(ngModel)]="element.boxStatus" 
+                                required 
+                                name="boxStatus-{{i}}" 
+                                [disabled]="isLoading"
+                                (selectionChange)="onBoxStatusChange(element)">
                         <mat-option value="full">{{ 'warehouse-operations.transfer.send-boxes-dialog.box-status-full' | translate }}</mat-option>
                         <mat-option value="empty">{{ 'warehouse-operations.transfer.send-boxes-dialog.box-status-empty' | translate }}</mat-option>
                     </mat-select>

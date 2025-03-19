@@ -14,7 +14,8 @@
         "send": "Gönder",
         "sync": "Senkronize Et",
         "generate-passwords": "Yeni Şifre Üret",
-        "send-all-user": "Şifreleri Gönder"
+        "send-all-user": "Tüm Kullanıcılara Gönder",
+        "send-selected-user": "Seçili Kullanıcılara Gönder"
     },
 
     "sidenav": {
@@ -131,7 +132,9 @@
                 "confirm-header": "Şifre Gönderimi",
                 "confirm-message": "Şifreyi göndermek istediğinizden emin misiniz?",
                 "success": "Şifre başarıyla gönderildi",
-                "no-email": "Kullanıcının email adresi bulunamadı."
+                "no-email": "Kullanıcının email adresi bulunamadı.",
+                "selected-success": "Seçili kullanıcılara şifreler başarıyla gönderildi.",
+                "all-success": "Tüm kullanıcılara şifreler başarıyla gönderildi."
             },
 
             "generate-password": {
@@ -158,7 +161,7 @@
                 "quantity": "Adet",
                 "box-required": "Kutu alanı zorunlu.",
                 "quantity-required": "Adet alanı zorunlu.",
-                "quantity-wrong": "Adet 3'den küçük olamaz.",
+                "quantity-wrong": "Adet 3'den küçük olamaz.  Lojistik firma 3 adet ve üzeri alım yapabilmektedir.",
                 "quantity-integer": "Adet sadece tam sayı olabilir.",
                 "delivery-note": "İrsaliye",
                 "delivery-note-required": "İrsaliye alanı zorunlu.",

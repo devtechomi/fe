@@ -207,19 +207,32 @@ export class WarehousesComponent implements OnInit {
 
   async sendAllUSerNewPassword() {
     this.loadingComponent.changeState(true, false);
-    const erpCodes = this.tableData.data.map(x => x.erpCode);
-    const response = await this.businessService.sendAllUserNewPasswords(erpCodes)
+    
+    // Get ERP codes based on selection
+    const erpCodes = this.selection.selected.length > 0 
+        ? this.selection.selected.map(x => x.erpCode)  // Selected users
+        : this.tableData.data.map(x => x.erpCode);     // All users if none selected
+    
+    const response = await this.businessService.sendAllUserNewPasswords(erpCodes);
+    
     if (response.isSuccess) {
-      this.toasterNotificationService.showToaster({
-        type: ToasterType.Success,
-        messageKey: 'integrations.sync.up-to-date'
-      });
+        this.toasterNotificationService.showToaster({
+            type: ToasterType.Success,
+            messageKey: this.selection.selected.length > 0 
+                ? 'business.warehouses.send-password.selected-success'  // New message for selected users
+                : 'business.warehouses.send-password.all-success'       // Existing message for all users
+        });
     } else {
-      this.toasterNotificationService.showToaster({
-        type: ToasterType.Error,
-        messageKey: 'errors.global-error'
-      });
+        this.toasterNotificationService.showToaster({
+            type: ToasterType.Error,
+            messageKey: 'errors.global-error'
+        });
     }
+    
+    // Clear selection after sending
+    this.selection.clear();
+    this.selectedRows.clear();
+    
     this.loadingComponent.changeState(false, false);
   }
 

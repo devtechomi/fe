@@ -155,18 +155,18 @@ export class TransferComponent implements OnInit {
 
   onWarehouseSelectionChange() {
     this.sendBoxData = this.selectedWarehouses.map(warehouse => ({
-      warehouse: warehouse,
-      boxCode: null,
-      quantity: null,
-      deliveryNote: this.generateRandomDeliveryNote(),
-      boxStatus: this.selectedTransferType === 'ReturnToWarehouse' ? 'empty' : 'full'
+        warehouse: warehouse,
+        boxCode: null,
+        quantity: null,
+        deliveryNote: this.selectedTransferType === 'ReturnToWarehouse' ? this.generateRandomDeliveryNote() : '',
+        boxStatus: this.selectedTransferType === 'ReturnToWarehouse' ? 'empty' : 'full'
     }));
 
     if (this.selectedWarehouses.length === 1) {
-      const selectedWarehouse = this.selectedWarehouses[0];
-      if (this.boxes && this.boxes.length === 1) {
-        this.sendBoxData[0].boxCode = this.boxes[0].code;
-      }
+        const selectedWarehouse = this.selectedWarehouses[0];
+        if (this.boxes && this.boxes.length === 1) {
+            this.sendBoxData[0].boxCode = this.boxes[0].code;
+        }
     }
   }
 
@@ -204,8 +204,13 @@ export class TransferComponent implements OnInit {
     if (!this.selectedTransferType || this.sendBoxData.length === 0) return false;
 
     for (const item of this.sendBoxData) {
-      if (!item.boxCode || !item.deliveryNote || !item.boxStatus) return false;
-      if (item.quantity == null || item.quantity < 3 || item.quantity % 1 !== 0) return false;
+        // Basic validations for all cases
+        if (!item.boxCode || !item.deliveryNote || !item.boxStatus) return false;
+
+        // Quantity validation only for empty boxes
+        if (item.boxStatus === 'empty') {
+            if (item.quantity == null || item.quantity < 3 || item.quantity % 1 !== 0) return false;
+        }
     }
 
     return true;
@@ -243,5 +248,15 @@ export class TransferComponent implements OnInit {
 
   isWarehouseSelectionDisabled(): boolean {
     return !this.hasAnyPermission() || !this.selectedTransferType;
+  }
+
+  onBoxStatusChange(element: any) {
+    if (element.boxStatus === 'empty') {
+        element.deliveryNote = this.generateRandomDeliveryNote();
+        element.quantity = 3; // Set default quantity for empty boxes
+    } else {
+        element.deliveryNote = '';
+        element.quantity = null; // Reset quantity for full boxes
+    }
   }
 }
