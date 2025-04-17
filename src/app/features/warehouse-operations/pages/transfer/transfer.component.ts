@@ -209,7 +209,7 @@ export class TransferComponent implements OnInit {
 
         // Quantity validation only for empty boxes
         if (item.boxStatus === 'empty') {
-            if (item.quantity == null || item.quantity < 3 || item.quantity % 1 !== 0) return false;
+            if (item.quantity == null || item.quantity < 1 || item.quantity % 1 !== 0) return false;
         }
     }
 
@@ -253,7 +253,7 @@ export class TransferComponent implements OnInit {
   onBoxStatusChange(element: any) {
     if (element.boxStatus === 'empty') {
         element.deliveryNote = this.generateRandomDeliveryNote();
-        element.quantity = 3; // Set default quantity for empty boxes
+        element.quantity = 1; // Set default quantity for empty boxes
     } else {
         element.deliveryNote = '';
         element.quantity = null; // Reset quantity for full boxes

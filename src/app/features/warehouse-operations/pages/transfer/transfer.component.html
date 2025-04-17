@@ -70,14 +70,14 @@
                     <mat-error *ngIf="element.boxStatus === 'empty' && (element.quantity === null || element.quantity === undefined)">
                         {{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-required' | translate }}
                     </mat-error>
-                    <mat-error *ngIf="element.boxStatus === 'empty' && element.quantity !== null && element.quantity !== undefined && element.quantity < 4">
+                    <mat-error *ngIf="element.boxStatus === 'empty' && element.quantity !== null && element.quantity !== undefined && element.quantity < 2">
                         {{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-wrong' | translate }}
                     </mat-error>
                     <mat-error *ngIf="element.boxStatus === 'empty' && element.quantity !== null && element.quantity !== undefined && element.quantity % 1 !== 0">
                         {{ 'warehouse-operations.transfer.send-boxes-dialog.quantity-integer' | translate }}
                     </mat-error>
                 </mat-form-field>
-
+             
                 <mat-form-field style="width: 100%; margin-top: 10px;">
                     <mat-label>{{ 'warehouse-operations.transfer.send-boxes-dialog.delivery-note' | translate }}</mat-label>
                     <input matInput [(ngModel)]="element.deliveryNote" required name="delivery-note-{{i}}" [disabled]="isLoading">

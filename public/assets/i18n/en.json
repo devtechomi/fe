@@ -150,7 +150,7 @@
                 "quantity": "Quantity",
                 "box-required": "Box is required.",
                 "quantity-required": "Quantity is required.",
-                "quantity-wrong": "The quantity cannot be less than 3. The logistics company can purchase 3 or more items.",
+                "quantity-wrong": "The quantity cannot be less than 1. The logistics company can purchase 1 or more items.",
                 "quantity-integer": "Quantity can only be an integer.",
                 "delivery-note": "Delivery Note",
                 "delivery-note-required": "Delivery note is required.",

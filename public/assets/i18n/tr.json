@@ -161,7 +161,7 @@
                 "quantity": "Adet",
                 "box-required": "Kutu alanı zorunlu.",
                 "quantity-required": "Adet alanı zorunlu.",
-                "quantity-wrong": "Adet 3'den küçük olamaz.  Lojistik firma 3 adet ve üzeri alım yapabilmektedir.",
+                "quantity-wrong": "Adet 1'den küçük olamaz.  Lojistik firma 1 adet ve üzeri alım yapabilmektedir.",
                 "quantity-integer": "Adet sadece tam sayı olabilir.",
                 "delivery-note": "İrsaliye",
                 "delivery-note-required": "İrsaliye alanı zorunlu.",
