@@ -40,7 +40,7 @@
 
             <p>{{ 'warehouse-operations.transfer.send-boxes-dialog.content-1' | translate }}</p>
             <div class="btn-container">
-                <button mat-flat-button class="download-btn" (click)="onSyncBoxesClicked()" [disabled]="true">
+                <button mat-flat-button class="download-btn" (click)="onSyncBoxesClicked()" [disabled]="isLoading">
                     {{ 'actions.sync' | translate }}
                 </button>
                 <mat-spinner class="spinner" *ngIf="isSyncing" [diameter]="30"></mat-spinner>
