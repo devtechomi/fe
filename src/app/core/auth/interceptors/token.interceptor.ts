@@ -1,6 +1,6 @@
 import { HttpInterceptorFn, HttpStatusCode } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { catchError, of, switchMap } from 'rxjs';
+import { catchError, of, switchMap, throwError } from 'rxjs';
 import { API_URL } from '../../../shared/injection-tokens';
 import { TokenService } from '../services/token.service';
 import { ApiResponse } from '../../models/api-response';
@@ -88,7 +88,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
         )
       }
       else {
-        return next(req);
+        return throwError(() => error);
       }
     })
   );
